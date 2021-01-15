@@ -9,25 +9,49 @@ img{
   height: auto;
 }
 
+a {
+  text-decoration: none;
+  color: $white;
+  cursor: pointer;
+}
+
 .wrapper {
   max-width: 1400px;
   width: 90%;
   margin: 0 auto;
 }
 
+h2 {
+  color: $red;
+  font-family: sans-serif;
+  @include fontStyling(3rem, 700);
+  opacity: 0;
+  animation: fade-in 3s ease-in forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  } 100% {
+    opacity: 1;
+  }
+}
+
 // main section
 header {
   background-color: $black;
   position: relative;
+  height: 100vh;
 }
 
 nav {
-  position: sticky;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: transparent;
-  // position: absolute;
-  // top: 0;
+  padding: 0 40px;
+  position: relative;
+  z-index: 100;
   img {
     width: 150px;
   }
@@ -38,7 +62,10 @@ nav {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 25px;
   cursor: pointer;
+  position: relative;
+  z-index: 1000;
 }
 
 .line {
@@ -50,24 +77,50 @@ nav {
   transition: all .5s;
 }
 
-  // Each hamburger line
-  .line1 {
-    transform: rotate(45deg) translate(7px, 6px)
-  }
-  .line2 {
-    width: 0;
-  }
-  .line3 {
-    transform: rotate(-45deg) translate(15px, -14px);
-  }
+// Each hamburger line
+.line1 {
+  transform: rotate(45deg) translate(7px, 6px)
+}
+.line2 {
+  width: 0;
+}
+.line3 {
+  transform: rotate(-45deg) translate(15px, -14px);
+}
 
 ul {
-  display: none;
+  visibility: hidden;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  background-color: $blue;
+  width: 100%;
+  height: 100vh;
+  clip-path: circle(100px at 110% -10%);
+    -webkit-clip-path: circle(100px at 110% -10%);
+  transition: all 1s ease-out;
+}
+
+.open {
+  visibility: visible;
+  clip-path: circle(2400px at 110% -10%);
+    -webkit-clip-path: circle(2400px at 110% -10%);
+}
+
+.hide {
+  visibility: hidden;
 }
 
 li {
   color: $white;
   list-style: none;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  padding: 30px 0;
+  @include fontStyling(2rem, 700);
 }
 
 // fly in images
@@ -75,40 +128,19 @@ li {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  h2 {
-    color: $red;
-    font-family: sans-serif;
-    position: absolute;
-    z-index: 10;
-    bottom: 120%;
-    @include fontStyling(5rem, 700);
-    animation: text 3s 1s ease-in-out forwards;
-  }
   img {
     position: absolute;
+    z-index: 1;
     width: 70%;
-    bottom: -100%;
-    animation: mountain 3s ease-in-out forwards;
+    bottom: 0;
   }
 }
 
 @keyframes text {
   0% {
     opacity: 0;
-    bottom: 120%;
   } 100% {
     opacity: 1;
-    bottom: 60%;
-  }
-}
-
-@keyframes mountain {
-  0% {
-    opacity: 0;
-    bottom: -100%;
-  } 100% {
-    opacity: 1;
-    bottom: 0;
   }
 }
 
@@ -124,6 +156,7 @@ li {
 
 .clouds {
   position: absolute;
+  z-index: 5;
   top: 0;
   left: 0;
   width: 100%;
@@ -132,7 +165,7 @@ li {
   pointer-events: none;
   img {
     position: absolute;
-    bottom: 0;
+    bottom: -20px;
     max-width: 100%;
     animation: floating calc(3s * var(--i)) linear infinite;    
   }
