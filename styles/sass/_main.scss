@@ -1,0 +1,153 @@
+// Global to be added
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img{
+  width: 100%;
+  height: auto;
+}
+
+.wrapper {
+  max-width: 1400px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+// main section
+header {
+  background-color: $black;
+  position: relative;
+}
+
+nav {
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+  // position: absolute;
+  // top: 0;
+  img {
+    width: 150px;
+  }
+}
+
+.hamburger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.line {
+  display: block;
+  background-color: $white;
+  width: 45px;
+  height: 5px;
+  margin: 5px;
+  transition: all .5s;
+}
+
+  // Each hamburger line
+  .line1 {
+    transform: rotate(45deg) translate(7px, 6px)
+  }
+  .line2 {
+    width: 0;
+  }
+  .line3 {
+    transform: rotate(-45deg) translate(15px, -14px);
+  }
+
+ul {
+  display: none;
+}
+
+li {
+  color: $white;
+  list-style: none;
+}
+
+// fly in images
+.icons {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  h2 {
+    color: $red;
+    font-family: sans-serif;
+    position: absolute;
+    z-index: 10;
+    bottom: 120%;
+    @include fontStyling(5rem, 700);
+    animation: text 3s 1s ease-in-out forwards;
+  }
+  img {
+    position: absolute;
+    width: 70%;
+    bottom: -100%;
+    animation: mountain 3s ease-in-out forwards;
+  }
+}
+
+@keyframes text {
+  0% {
+    opacity: 0;
+    bottom: 120%;
+  } 100% {
+    opacity: 1;
+    bottom: 60%;
+  }
+}
+
+@keyframes mountain {
+  0% {
+    opacity: 0;
+    bottom: -100%;
+  } 100% {
+    opacity: 1;
+    bottom: 0;
+  }
+}
+
+// cloud area
+.cloud-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  img {
+    position: absolute;
+    bottom: 0;
+    max-width: 100%;
+    animation: floating calc(3s * var(--i)) linear infinite;    
+  }
+}
+
+@keyframes floating {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  25%, 75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
